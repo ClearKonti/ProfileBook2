@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Profilebook"
+             x:Class="Profilebook.Views.SignUpPage">
+
+    <!--<ContentPage.Resources>
+        <ResourceDictionary>
+            <local:MultiTriggerConverter x:Key="dataHasBeenEntered" />
+        </ResourceDictionary>
+    </ContentPage.Resources>-->
+    
+    <ContentPage.Content>
+        
+        <StackLayout Margin="30,100,30,50" Spacing="120">
+            <Grid RowSpacing ="10">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.25*"/>
+                    <RowDefinition Height="0.25*"/>
+                    <RowDefinition Height="0.25*"/>
+                </Grid.RowDefinitions>
+
+                <Entry x:Name="SignUpLoginEntry" 
+                       Text="{Binding SignUpLogin}"
+                   
+                   Grid.Row="0"
+                   VerticalOptions="Center"
+                   Placeholder="Login"/>
+
+                <Entry x:Name="SignUpPasswordEntry" 
+                       Text="{Binding SignUpPassword}"
+                   
+                       Grid.Row="1"
+                   Placeholder="Password"/>
+
+                <Entry x:Name="SignUpPasswordConfirmEntry" 
+                       Text="{Binding SignUpPasswordConfirm}"
+                   
+                       Grid.Row="2"
+                   Placeholder="Confirm Password"/>
+            </Grid>
+            <Grid RowSpacing="10"> 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.25*"/>
+                    <RowDefinition Height="0.25*"/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="SignUpButton"
+                    
+                    Command="{Binding SignUpProcessCommand}"
+                        
+                    Text="Sign up"
+                    FontSize="16"
+                        
+                    Grid.Row="0"
+                    
+                    CornerRadius="4"
+                    BackgroundColor="Orange"
+                    HeightRequest="50">
+                </Button>
+
+                <Button x:Name="BackToSignInButton"
+                        
+                        Command="{Binding BackToSignInCommand}"
+                       
+                       Grid.Row="1" 
+                       
+                       Text="Back to sign in"
+                       FontSize="16"
+                       TextColor="Black"
+                        
+                        CornerRadius="4"
+                        BackgroundColor="White"
+                        HeightRequest="50"
+                        BorderColor="Orange"
+                        BorderWidth="2">
+                </Button>
+
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
