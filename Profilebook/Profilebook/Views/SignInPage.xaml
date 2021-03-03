@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:Profilebook"
+             x:Class="Profilebook.Views.SignInPage"
+             Title="User sign in">
+
+    
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:MultiTriggerConverter x:Key="dataHasBeenEntered" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Margin="30,100,30,50" Spacing="200">
+            <Grid RowSpacing ="10">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.25*"/>
+                    <RowDefinition Height="0.25*"/>
+                </Grid.RowDefinitions>
+                
+                <Entry x:Name="LoginEntry" 
+                       Text="{Binding SignInLogin}"
+                        
+                       Grid.Row="0"
+                   VerticalOptions="Center"
+                   Placeholder="Login"/>
+
+                <Entry x:Name="PasswordEntry" 
+                       Text="{Binding SignInPassword}"
+                   
+                       Grid.Row="1"
+                   Placeholder="Password"/>
+            </Grid>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.25*"/>
+                    <RowDefinition Height="0.25*"/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="SignInButton" IsEnabled="false"
+                        
+                        Command="{Binding SignInButtonCommand}"
+                        
+                        Text="Sign in"
+                        FontSize="16"
+                        
+                        
+                        Grid.Row="0"
+                    
+                        CornerRadius="4"
+                        BackgroundColor="Orange"
+                        HeightRequest="50">
+                    <Button.Triggers>
+                        <MultiTrigger TargetType="Button">
+                            <MultiTrigger.Conditions>
+                                <BindingCondition Binding="{Binding Source={x:Reference LoginEntry}, Path=Text.Length, Converter={StaticResource dataHasBeenEntered}}" Value="true" />
+                                <BindingCondition Binding="{Binding Source={x:Reference PasswordEntry}, Path=Text.Length, Converter={StaticResource dataHasBeenEntered}}" Value="true" />
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.Setters>
+                                <Setter Property="IsEnabled" Value="true"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </Button.Triggers>
+                </Button>
+
+                <Label x:Name="SignUpLink"
+                       
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       
+                       Grid.Row="1" 
+                       Text="Sign up"
+                                  FontSize="16"
+                                  TextColor="Black"
+                                  TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SignUpHyperlinkCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+            
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
