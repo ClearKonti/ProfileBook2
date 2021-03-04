@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Profilebook.Views.AddEditProfile">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="SaveToolBarItem"
+                     Command="{Binding SaveToolBarItemCommand}"
+                     IconImageSource="ic_save.png"/>
+
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Spacing="40" Margin="30,20,30,50">
+            
+            <Image Source="pic_profile.png"
+                   
+                   HeightRequest="200"
+                   Margin="0,20,0,0"/>
+
+            <Entry Text="{Binding ProfileNick}" 
+                   Placeholder="NickName" />
+
+            <Entry Text="{Binding ProfileName}" 
+                   Placeholder="Name"/>
+
+            <Editor Text="{Binding ProfileDescription}"
+                
+                    BackgroundColor="LightGray"
+                    Placeholder="Description"
+                    HeightRequest="100"/>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Profilebook.Views.MainList"
+             Title="Contact list"
+             x:Name="this">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="ExitToolBarItem"
+                     Command="{Binding ExitToolBarCommand}"
+                     IconImageSource="ic_exit_to_app.png"/>
+        
+        <ToolbarItem Name="SettingsToolBarItem"
+                     Command="{Binding SettingsToolBarCommand}"
+                     IconImageSource="ic_settings.png"/>
+        
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ListView Grid.Row="0" 
+                  ItemsSource="{Binding ProfileList}" 
+                  HasUnevenRows="True"
+                  SelectedItem="{Binding SelectedItem}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    
+                    <ViewCell.ContextActions>
+                        <MenuItem Text="Edit"
+                                    Command="{Binding Path=BindingContext.OnEditTapCommand, Source={x:Reference this}}" CommandParameter="{x:Binding .}"  />
+                        <MenuItem Text="Delete"
+                                    Command="{Binding Path=BindingContext.OnDeleteTapCommand, Source={x:Reference this}}" CommandParameter="{x:Binding .}"  />
+
+                    </ViewCell.ContextActions>
+                    
+                    <ViewCell.View>
+                        <Grid ColumnSpacing="20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="pic_profile.png" 
+                                Grid.Column="0" 
+                                Margin="10,10,0,10" 
+                                HeightRequest="80" 
+                                VerticalOptions="Center"/>
+
+                            <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="{Binding FirstName}"/>
+                                <Label Text="{Binding LastName}"/>
+                                <Label Text="{Binding CreationDate}"/>
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell.View>
+                    </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+        <Button ImageSource="ic_add.png"
+                Command="{Binding AddProfileCommand}"
+               
+            Grid.Row="0" 
+                
+            WidthRequest="70" 
+            HeightRequest="70" 
+            Margin="0,0,20,20" 
+                
+            HorizontalOptions="End" 
+            VerticalOptions="End"
+                
+            BorderColor="#2b3c3c" 
+            BorderWidth="3" 
+            BorderRadius="35" 
+                
+            BackgroundColor="CornflowerBlue" />
+    </Grid>
+</ContentPage>
