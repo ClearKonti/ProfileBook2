@@ -16,7 +16,7 @@ namespace Profilebook.Services.Repository
         {
             _database = new Lazy<SQLiteAsyncConnection>(() =>
             {
-                var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "contactList.db3");
+                var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "9.db");
                 var database = new SQLiteAsyncConnection(path);
 
                 database.CreateTableAsync<ProfileModel>();

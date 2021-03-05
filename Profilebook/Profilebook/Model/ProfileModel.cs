@@ -5,10 +5,11 @@ using System.Text;
 
 namespace Profilebook.Model
 {
+    [Table("ProfileModel")]
     public class ProfileModel : IEntityBase
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        [PrimaryKey, AutoIncrement, Column("_id")]
+        public int Id { get;  set; }
 
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using Prism.Ioc;
 using Prism.Unity;
+using Profilebook.Services.Profile;
 using Profilebook.Services.Repository;
 using Profilebook.Services.SettingsManager;
 using Profilebook.Tables;
@@ -38,6 +39,7 @@ namespace Profilebook
         {
             containerRegistry.RegisterInstance<ISettingsManager>(Container.Resolve<SettingsManager>());
             containerRegistry.RegisterInstance<IRepository>(Container.Resolve<Repository>());
+            containerRegistry.RegisterInstance<IProfileService>(Container.Resolve<ProfileService>());
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<SignInPage, SignInPageViewModel>();
@@ -55,8 +57,8 @@ namespace Profilebook
             //     await NavigationService.NavigateAsync(new System.Uri("http://www.Profilebook/NavigationPage/MainList", System.UriKind.Absolute));
             // }
 
-            await NavigationService.NavigateAsync(new System.Uri("http://www.Profilebook/SignInPage", System.UriKind.Absolute));
-            //await NavigationService.NavigateAsync(new System.Uri("http://www.Profilebook/NavigationPage/MainList", System.UriKind.Absolute));
+            //await NavigationService.NavigateAsync(new System.Uri("http://www.Profilebook/SignInPage", System.UriKind.Absolute));
+            await NavigationService.NavigateAsync(new System.Uri("http://www.Profilebook/NavigationPage/MainList", System.UriKind.Absolute));
 
         }
         protected override void OnStart()

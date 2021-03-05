@@ -21,7 +21,10 @@ namespace Profilebook.ViewModels
 
         #region --- Public Properties ---
 
-        
+        //private DelegateCommand _signUpButtonCommand;
+        //public DelegateCommand SignUpProcessCommand =>
+        //    _signUpButtonCommand ??
+        //    (_signUpButtonCommand = new DelegateCommand(SignUpProcess)).ObservesCanExecute(() => IsEnabled);
 
         public ICommand SignUpProcessCommand => new Command(SignUpProcess);
         public ICommand BackToSignInCommand => new Command(BackToSignIn);
@@ -32,6 +35,8 @@ namespace Profilebook.ViewModels
             get => _signUpLogin;
             set => SetProperty(ref _signUpLogin, value);
         }
+
+        //public bool IsEnabled { get; private set; }
 
         private string _signUpPassword;
         public string SignUpPassword
@@ -63,12 +68,12 @@ namespace Profilebook.ViewModels
         }
         private async void SignUpProcess()
         {
-            if (SignUpLogin.Length < 4 || SignUpLogin.Length > 16)
+            if (SignUpLogin.Length <= 4 || SignUpLogin.Length >= 16)
             {
                 Acr.UserDialogs.UserDialogs.Instance.Alert("Username should be at least 4 and not longer than 16 symbols");
             }
 
-            if (SignUpPassword.Length < 8 || SignUpPassword.Length > 16)
+            if (SignUpPassword.Length <= 8 || SignUpPassword.Length >= 16)
             {
                 Acr.UserDialogs.UserDialogs.Instance.Alert("Password should be at least 8 and not longer than 16 symbols");
             }

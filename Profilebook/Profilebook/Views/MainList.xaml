@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Profilebook.Views.MainList"
-             Title="Contact list">
+             Title="Contact list"
+             x:Name="this">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="ExitToolBarItem"
@@ -20,10 +21,22 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <ListView Grid.Row="0" ItemsSource="{Binding ProfileList}" HasUnevenRows="True">
+        <ListView Grid.Row="0" 
+                  ItemsSource="{Binding ProfileList}" 
+                  HasUnevenRows="True"
+                  SelectedItem="{Binding SelectedItem}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
+                    
+                    <ViewCell.ContextActions>
+                        <MenuItem Text="Edit"
+                                    Command="{Binding Path=BindingContext.OnEditTapCommand, Source={x:Reference this}}" CommandParameter="{x:Binding .}"  />
+                        <MenuItem Text="Delete"
+                                    Command="{Binding Path=BindingContext.OnDeleteTapCommand, Source={x:Reference this}}" CommandParameter="{x:Binding .}"  IsDestructive="True"/>
+                           
+                        </ViewCell.ContextActions>
+                    
                     <ViewCell.View>
                         <Grid ColumnSpacing="20">
                             <Grid.ColumnDefinitions>
@@ -32,10 +45,10 @@
                             </Grid.ColumnDefinitions>
 
                             <Image Source="pic_profile.png" 
-                                   Grid.Column="0" 
-                                   Margin="10,10,0,10" 
-                                   HeightRequest="80" 
-                                   VerticalOptions="Center"/>
+                                Grid.Column="0" 
+                                Margin="10,10,0,10" 
+                                HeightRequest="80" 
+                                VerticalOptions="Center"/>
 
                             <StackLayout Grid.Column="1" VerticalOptions="Center">
                                 <Label Text="{Binding FirstName}"/>
@@ -44,7 +57,7 @@
                             </StackLayout>
                         </Grid>
                     </ViewCell.View>
-                </ViewCell>
+                    </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
